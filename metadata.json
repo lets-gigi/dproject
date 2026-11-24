@@ -1,0 +1,6 @@
+{
+  "name": "시험장 전자기기 감지 시뮬레이터",
+  "description": "감독관 시점(교탁 고정 55도 시야 및 반경 2m 순찰)과 CCTV 시점을 교차 활용하여 시험장 내 부정행위 전자기기와 특이 행동을 자막으로 감지하고 퇴실 또는 보류 조치를 수행하는 시뮬레이션 앱",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
