@@ -65,9 +65,8 @@ Each exam period populates 20 seats (`5 cols × 4 rows`) in `OUR_ROOM` and 6 ref
 
 | Layer | Specification |
 | :--- | :--- |
-| **Framework & Runtime** | React 19 (`^19.0.1`), TypeScript (`^7.0.2`, `tsc --noEmit`) |
-| **Build Tooling** | Vite 8 (`^8.3.0`), `@vitejs/plugin-react` (`^6.1.1`) |
-| **Styling & UI** | Tailwind CSS v4 (`@tailwindcss/vite`, `@import "tailwindcss";`), `lucide-react` (`^0.546.0`), Google Fonts (`Plus Jakarta Sans`, `Noto Sans KR`, `JetBrains Mono`) |
-| **Spatial & Simulation Engine** | Custom SVG coordinate stage (`960×600`, `72px = 1.0m`), ray-wall intersection FOV polygon clipping, Euclidean 2.0m proximity detection, dual-speed (`1×`/`2×`) state tick loop |
-| **Project Structure** | `src/App.tsx` (simulation loop & state), `src/types/simulation.ts` (domain models), `src/utils/geometry.ts` (FOV & distance math), `src/utils/examGenerator.ts` (procedural period generator), `src/components/ClassroomStage.tsx`, `src/components/InspectionPanel.tsx`, `src/components/LaterInspectionModal.tsx`, `src/components/ExamResultModal.tsx` |
-| **Deployment Target** | Static SPA build (`npm run build` → `dist/`), configured for Vercel via `vercel.json` and GitHub CI/CD import |
+| **Architecture** | Zero-framework, zero-build single-file application (`index.html`) with inline `<style>` and classic `<script>` |
+| **External Libraries** | Google Fonts CDN only (`Plus Jakarta Sans`, `Noto Sans KR`, `JetBrains Mono`) with system font fallback |
+| **Local Execution** | Runs directly when double-clicked in any modern browser (`file://` protocol safe, no ES module or server dependency) |
+| **Spatial & Simulation Engine** | Custom SVG coordinate stage (`960×600`, `72px = 1.0m`), ray-wall intersection FOV polygon clipping, Euclidean 2.0m proximity detection, dual-speed (`1×`/`2×`) tick loop |
+| **Deployment Target** | Direct GitHub upload and zero-build static Vercel deployment via `vercel.json` (`cleanUrls: true`) |

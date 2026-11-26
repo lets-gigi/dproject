@@ -73,16 +73,12 @@
 
 ## 6. 기술 스택 및 배포 사양
 
-- **Frontend**: React 19, TypeScript, Vite 8, Tailwind CSS v4, Lucide Icons
-- **주요 모듈**:
-  - `src/App.tsx`: 시뮬레이션 루프, 키보드/마우스 제어, 자막 엔진, 교시 상태 관리
-  - `src/utils/geometry.ts`: 55° 교실 경계벽 클리핑(Ray-Wall Intersection), 2.0m 거리 판별, 상대 방향/위치 텍스트 생성
-  - `src/utils/examGenerator.ts`: 교시별 학생·부정 기기·행동 시나리오 생성기
-  - `src/components/ClassroomStage.tsx`: 감독관 시점 / CCTV 시점 인터랙티브 SVG 스테이지 및 하단 자막 바
-  - `src/components/InspectionPanel.tsx`: 선택 학생 증거 대조 카드 및 자막/보류/조치 기록 탭
-  - `src/components/LaterInspectionModal.tsx`: 보류 학생 전용 0.5m 근접 스캔 및 소지품 대면 검사 창
-  - `src/components/ExamResultModal.tsx`: 교시 결산 리포트 및 다음 시험 전환 모달
+- **아키텍처**: 프레임워크 및 빌드 도구 없는 **순수 HTML5 / CSS3 / Vanilla JavaScript 단일 파일(`index.html`)** 구조
+- **외부 리소스**: Google Fonts CDN (`Plus Jakarta Sans`, `Noto Sans KR`, `JetBrains Mono`)만 사용하며 오프라인·로컬 `file://` 실행 시에도 정상 동작
+- **구현 모듈 (`index.html` 내장 `<style>` 및 `<script>`)**:
+  - 공간 연산: 55° 교실 경계벽 클리핑(Ray-Wall Intersection), 반경 2.0m 유클리드 거리 계산, 상대 방향·각도·거리 자막 생성
+  - 시뮬레이션 엔진: 교시별 학생·부정 기기·행동 시나리오 생성, 40ms 프레임 이동·회전 루프 및 실시간 자막/의심 판정
+  - UI 계층: SVG 인터랙티브 교실·CCTV 스테이지, 하단 자막 바, 우측 검사 패널, 보류 학생 추후 정밀 검사 모달, 교시 결산 모달
 - **GitHub & Vercel 배포 구성**:
-  - `vercel.json`: Vite 프레임워크 프리셋, `npm run build` → `dist/` 정적 SPA 라우팅 설정
-  - `.github/workflows/ci.yml`: `main` 브랜치 푸시/PR 시 TypeScript(`npm run lint`) 및 Vite 빌드(`npm run build`) 자동 검증
-  - `DEPLOY.md` / `README.md`: GitHub 업로드 및 Vercel 배포 가이드
+  - `vercel.json`: 빌드 명령어 없이 `index.html`을 즉시 정적 서빙하는 최소 설정
+  - `DEPLOY.md` / `README.md`: 로컬 더블 클릭 실행 및 GitHub 업로드·Vercel 즉시 배포 안내
